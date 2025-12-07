@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Life Wheel
  * Description: Interactive life wheel assessment where students rate 8 life categories with AI-powered analysis and insights. Use shortcode [life_wheel].
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: MisterT9007
  */
 
@@ -72,16 +72,53 @@ class Life_Wheel {
 
     public function register_assets() {
         $handle = 'life-wheel';
+        
+        // Try multiple methods to get the correct URL
+        $plugin_url = plugin_dir_url( __FILE__ );
+        
+        // Alternative: use plugins_url with the folder name
+        $alt_url = plugins_url( '', __FILE__ );
+        
+        // Construct full URLs
+        $js_url = $plugin_url . 'assets/life-wheel.js';
+        $css_url = $plugin_url . 'assets/life-wheel.css';
+        
+        // Log for debugging
+        error_log( '=== Life Wheel Asset Registration ===' );
+        error_log( 'Plugin File (__FILE__): ' . __FILE__ );
+        error_log( 'plugin_dir_url: ' . $plugin_url );
+        error_log( 'plugins_url: ' . $alt_url );
+        error_log( 'JS URL: ' . $js_url );
+        error_log( 'CSS URL: ' . $css_url );
+        
+        // Check if files exist on filesystem
+        $js_path = plugin_dir_path( __FILE__ ) . 'assets/life-wheel.js';
+        $css_path = plugin_dir_path( __FILE__ ) . 'assets/life-wheel.css';
+        error_log( 'Plugin Dir Path: ' . plugin_dir_path( __FILE__ ) );
+        error_log( 'JS file exists: ' . ( file_exists( $js_path ) ? 'YES' : 'NO' ) . ' (' . $js_path . ')' );
+        error_log( 'CSS file exists: ' . ( file_exists( $css_path ) ? 'YES' : 'NO' ) . ' (' . $css_path . ')' );
+        
+        // Check assets folder
+        $assets_dir = plugin_dir_path( __FILE__ ) . 'assets';
+        if ( is_dir( $assets_dir ) ) {
+            error_log( 'Assets folder exists: YES' );
+            $files = scandir( $assets_dir );
+            error_log( 'Files in assets folder: ' . implode( ', ', $files ) );
+        } else {
+            error_log( 'Assets folder exists: NO - Expected at: ' . $assets_dir );
+        }
+        error_log( '=====================================' );
+        
         wp_register_script(
             $handle,
-            plugins_url( 'assets/life-wheel.js', __FILE__ ),
+            $js_url,
             array(),
             self::VERSION,
             true
         );
         wp_register_style(
             $handle,
-            plugins_url( 'assets/life-wheel.css', __FILE__ ),
+            $css_url,
             array(),
             self::VERSION
         );
