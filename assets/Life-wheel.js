@@ -1,11 +1,11 @@
 (function () {
-  const cfg = window.LIFE_WHEEL_CFG || {};
-  const root = document.getElementById("life-wheel-root");
+  const cfg = window.Life_WHEEL_CFG || {};
+  const root = document.getElementById("Life-wheel-root");
   if (!root) return;
 
   console.log('Life Wheel Config:', cfg);
 
-  const chatSource = document.getElementById("life-wheel-chat-source");
+  const chatSource = document.getElementById("Life-wheel-chat-source");
   const categories = cfg.categories || [];
 
   let ratings = {};
@@ -214,7 +214,7 @@
     intro.appendChild(p1);
     
     const p2 = el("p");
-    p2.textContent = "Your Life Wheel helps you see how balanced your life feels right now. You'll rate 8 different areas from 0-10, and we'll create a visual wheel that shows your current life balance.";
+    p2.textContent = "Your Life Wheel helps you see how balanced your Life feels right now. You'll rate 8 different areas from 0-10, and we'll create a visual wheel that shows your current Life balance.";
     intro.appendChild(p2);
 
     card.appendChild(intro);
@@ -282,7 +282,7 @@
     const sliderContainer = el("div", "lw-slider-container");
     sliderContainer.style.display = "none";
 
-    const sliderLabel = el("label", "lw-slider-label", "How would you rate this area of your life?");
+    const sliderLabel = el("label", "lw-slider-label", "How would you rate this area of your Life?");
     sliderLabel.htmlFor = "lw-slider";
     sliderContainer.appendChild(sliderLabel);
 
@@ -574,7 +574,7 @@
       ctx.lineWidth = isHighlighted ? 3 : 2;
       ctx.stroke();
 
-      // Draw category label
+      // Draw category label with updated Life
       const labelAngle = (startAngle + endAngle) / 2;
       const labelRadius = radius + 30;
       const labelX = centerX + Math.cos(labelAngle) * labelRadius;
