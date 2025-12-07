@@ -1,0 +1,383 @@
+.lw-wrap {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.lw-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin: 12px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  background: #fff;
+}
+
+.lw-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 16px;
+}
+
+.lw-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.lw-progress {
+  font-size: 14px;
+  color: #666;
+  background: #f0f0f0;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.lw-intro {
+  background: #f0f8ff;
+  border-left: 4px solid #4a90e2;
+  padding: 20px 24px;
+  border-radius: 8px;
+  margin: 16px 0;
+  line-height: 1.7;
+  color: #2c3e50;
+}
+
+.lw-intro p {
+  margin: 12px 0;
+}
+
+.lw-intro strong {
+  color: #1a5490;
+}
+
+/* Wheel preview and container */
+.lw-wheel-preview,
+.lw-wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 24px 0;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+}
+
+.lw-wheel-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 16px;
+  color: #2c3e50;
+}
+
+#lw-wheel-preview-canvas,
+#lw-wheel-canvas,
+#lw-wheel-final-canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.lw-wheel-container.lw-spinning {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.lw-wheel-container.lw-spinning canvas {
+  filter: brightness(1.1);
+}
+
+/* Slider */
+.lw-slider-container {
+  margin: 24px 0;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.lw-slider-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #2c3e50;
+}
+
+.lw-slider-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.lw-slider {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: #ddd;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.lw-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #4a90e2;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.lw-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.lw-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #4a90e2;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  border: none;
+  transition: transform 0.2s;
+}
+
+.lw-slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+}
+
+.lw-slider-value {
+  min-width: 40px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #4a90e2;
+}
+
+.lw-slider-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  padding: 0 2px;
+}
+
+.lw-slider-scale span {
+  font-size: 11px;
+  color: #999;
+}
+
+/* Summary cards */
+.lw-summary-card,
+.lw-analysis-card {
+  margin: 20px 0;
+  padding: 20px;
+  background: #f0f8ff;
+  border-left: 4px solid #4a90e2;
+  border-radius: 8px;
+}
+
+.lw-summary-title,
+.lw-analysis-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: #2c3e50;
+}
+
+.lw-summary-text,
+.lw-analysis-text {
+  line-height: 1.7;
+  color: #2c3e50;
+  white-space: pre-wrap;
+}
+
+/* Chat section */
+.lw-chat-card {
+  margin: 24px 0;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+}
+
+.lw-chat-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #2c3e50;
+}
+
+.lw-chat-sub {
+  color: #666;
+  margin: 0 0 16px;
+  font-size: 14px;
+}
+
+.lw-chatwrap {
+  border-top: 1px solid #eee;
+  padding-top: 16px;
+}
+
+/* Actions */
+.lw-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.lw-btn {
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.lw-btn:hover {
+  background: #333;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.lw-btn:active {
+  transform: translateY(0);
+}
+
+.lw-btn-secondary {
+  background: #f5f5f5;
+  color: #222;
+  border-color: #ddd;
+}
+
+.lw-btn-secondary:hover {
+  background: #e0e0e0;
+}
+
+.lw-btn-start {
+  font-size: 18px;
+  padding: 14px 36px;
+  background: #4a90e2;
+  border-color: #4a90e2;
+  font-weight: 600;
+}
+
+.lw-btn-start:hover {
+  background: #357abd;
+  border-color: #357abd;
+}
+
+.lw-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Start button container */
+.lw-start-container {
+  text-align: center;
+  margin-top: 24px;
+}
+
+/* Loading overlay */
+.lw-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lw-spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #4a90e2;
+  border-radius: 50%;
+  animation: lw-spin 1s linear infinite;
+}
+
+@keyframes lw-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.lw-loading-text {
+  color: white;
+  font-size: 18px;
+  margin-top: 24px;
+  font-weight: 500;
+}
+
+/* Responsive design with updated life */
+@media (max-width: 600px) {
+  .lw-wrap {
+    padding: 12px;
+  }
+  
+  .lw-card {
+    padding: 16px 18px;
+  }
+  
+  .lw-title {
+    font-size: 20px;
+  }
+  
+  .lw-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .lw-wheel-preview,
+  .lw-wheel-container {
+    padding: 12px;
+  }
+  
+  #lw-wheel-preview-canvas,
+  #lw-wheel-canvas,
+  #lw-wheel-final-canvas {
+    max-width: 300px;
+  }
+  
+  .lw-actions {
+    flex-direction: column;
+  }
+  
+  .lw-btn {
+    width: 100%;
+  }
+}
+
+/* Animation for spinning wheel*/
+@keyframes wheel-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(720deg);
+  }
+}
+
+.lw-spinning canvas {
+  animation: wheel-spin 2s ease-out;
+}
