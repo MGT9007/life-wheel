@@ -1,11 +1,11 @@
 (function () {
-  const cfg = window.Life_WHEEL_CFG || {};
-  const root = document.getElementById("Life-wheel-root");
+  const cfg = window.life_WHEEL_CFG || {};
+  const root = document.getElementById("life-wheel-root");
   if (!root) return;
 
-  console.log('Life Wheel Config:', cfg);
+  console.log('life Wheel Config:', cfg);
 
-  const chatSource = document.getElementById("Life-wheel-chat-source");
+  const chatSource = document.getElementById("life-wheel-chat-source");
   const categories = cfg.categories || [];
 
   let ratings = {};
@@ -56,7 +56,7 @@
 
       if (res.ok) {
         const data = await res.json();
-        console.log('Life Wheel Status:', data);
+        console.log('life Wheel Status:', data);
         
         if (data.ok && data.status === 'completed' && data.overall_summary) {
           ratings = data.ratings || {};
@@ -130,7 +130,7 @@
 
   async function generateOverallSummary() {
     try {
-      const overlay = showLoadingOverlay("Generating your Life Wheel summary...");
+      const overlay = showLoadingOverlay("Generating your life Wheel summary...");
       
       const res = await fetch(cfg.restUrlSubmit, {
         method: 'POST',
@@ -204,17 +204,17 @@
     const card = el("div", "lw-card");
 
     const head = el("div", "lw-header");
-    head.appendChild(el("h2", "lw-title", "Welcome to Your Life Wheel"));
+    head.appendChild(el("h2", "lw-title", "Welcome to Your life Wheel"));
     card.appendChild(head);
 
     const intro = el("div", "lw-intro");
     
     const p1 = el("p");
-    p1.innerHTML = "<strong>Where are you at? Life wheel – Grade yourself on the below 8 measurements. 1-10</strong>";
+    p1.innerHTML = "<strong>Where are you at? life wheel – Grade yourself on the below 8 measurements. 1-10</strong>";
     intro.appendChild(p1);
     
     const p2 = el("p");
-    p2.textContent = "Your Life Wheel helps you see how balanced your Life feels right now. You'll rate 8 different areas from 0-10, and we'll create a visual wheel that shows your current Life balance.";
+    p2.textContent = "Your life Wheel helps you see how balanced your life feels right now. You'll rate 8 different areas from 0-10, and we'll create a visual wheel that shows your current life balance.";
     intro.appendChild(p2);
 
     card.appendChild(intro);
@@ -282,7 +282,7 @@
     const sliderContainer = el("div", "lw-slider-container");
     sliderContainer.style.display = "none";
 
-    const sliderLabel = el("label", "lw-slider-label", "How would you rate this area of your Life?");
+    const sliderLabel = el("label", "lw-slider-label", "How would you rate this area of your life?");
     sliderLabel.htmlFor = "lw-slider";
     sliderContainer.appendChild(sliderLabel);
 
@@ -353,12 +353,12 @@
     const card = el("div", "lw-card");
 
     const head = el("div", "lw-header");
-    head.appendChild(el("h2", "lw-title", "Your Life Wheel Summary"));
+    head.appendChild(el("h2", "lw-title", "Your life Wheel Summary"));
     card.appendChild(head);
 
     // Wheel visualization
     const wheelContainer = el("div", "lw-wheel-container");
-    const wheelTitle = el("h3", "lw-wheel-title", "Your Life Balance");
+    const wheelTitle = el("h3", "lw-wheel-title", "Your life Balance");
     wheelContainer.appendChild(wheelTitle);
     
     const wheelCanvas = document.createElement("canvas");
@@ -386,7 +386,7 @@
     if (chatSource && chatSource.innerHTML.trim()) {
       const chatCard = el("div", "lw-chat-card");
       const chatTitle = el("h3", "lw-chat-title", "Have Questions?");
-      const chatSub = el("p", "lw-chat-sub", "Chat with our AI coach about your Life Wheel results.");
+      const chatSub = el("p", "lw-chat-sub", "Chat with our AI coach about your life Wheel results.");
       chatCard.appendChild(chatTitle);
       chatCard.appendChild(chatSub);
       
@@ -574,7 +574,7 @@
       ctx.lineWidth = isHighlighted ? 3 : 2;
       ctx.stroke();
 
-      // Draw category label with updated Life
+      // Draw category label with updated life
       const labelAngle = (startAngle + endAngle) / 2;
       const labelRadius = radius + 30;
       const labelX = centerX + Math.cos(labelAngle) * labelRadius;

@@ -1,20 +1,20 @@
 <?php
 /**
- * Plugin Name: Life Wheel
- * Description: Interactive Life wheel assessment where students rate 8 Life categories with AI-powered analysis and insights. Use shortcode [Life_wheel].
- * Version: 1.0.3
+ * Plugin Name: life Wheel
+ * Description: Interactive life wheel assessment where students rate 8 life categories with AI-powered analysis and insights. Use shortcode [life_wheel].
+ * Version: 1.0.4
  * Author: MisterT9007
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Life_Wheel {
+class life_Wheel {
     const VERSION      = '1.0.0';
-    const TABLE        = 'mfsd_Life_wheel_results';
+    const TABLE        = 'mfsd_life_wheel_results';
     const NONCE_ACTION = 'wp_rest';
 
     private $categories = array(
-        'School Life',
+        'School life',
         'Finances',
         'Health',
         'Family and Friends',
@@ -27,7 +27,7 @@ class Life_Wheel {
     public function __construct() {
         register_activation_hook( __FILE__, array( $this, 'on_activate' ) );
         add_action( 'init', array( $this, 'register_assets' ) );
-        add_shortcode( 'Life_wheel', array( $this, 'shortcode' ) );
+        add_shortcode( 'life_wheel', array( $this, 'shortcode' ) );
         add_action( 'rest_api_init', array( $this, 'register_routes' ) );
         
         // Force flush rewrite rules on version change
@@ -35,11 +35,11 @@ class Life_Wheel {
     }
 
     public function check_version() {
-        $saved_version = get_option( 'Life_wheel_version' );
+        $saved_version = get_option( 'life_wheel_version' );
         if ( $saved_version !== self::VERSION ) {
             flush_rewrite_rules();
-            update_option( 'Life_wheel_version', self::VERSION );
-            error_log( 'Life Wheel: Flushed rewrite rules for version ' . self::VERSION );
+            update_option( 'life_wheel_version', self::VERSION );
+            error_log( 'life Wheel: Flushed rewrite rules for version ' . self::VERSION );
         }
     }
 
@@ -71,7 +71,7 @@ class Life_Wheel {
     }
 
     public function register_assets() {
-        $handle = 'Life-wheel';
+        $handle = 'life-wheel';
         
         // Try multiple methods to get the correct URL
         $plugin_url = plugin_dir_url( __FILE__ );
@@ -80,11 +80,11 @@ class Life_Wheel {
         $alt_url = plugins_url( '', __FILE__ );
         
         // Construct full URLs
-        $js_url = $plugin_url . 'assets/Life-wheel.js';
-        $css_url = $plugin_url . 'assets/Life-wheel.css';
+        $js_url = $plugin_url . 'assets/life-wheel.js';
+        $css_url = $plugin_url . 'assets/life-wheel.css';
         
         // Log for debugging
-        error_log( '=== Life Wheel Asset Registration ===' );
+        error_log( '=== life Wheel Asset Registration ===' );
         error_log( 'Plugin File (__FILE__): ' . __FILE__ );
         error_log( 'plugin_dir_url: ' . $plugin_url );
         error_log( 'plugins_url: ' . $alt_url );
@@ -92,8 +92,8 @@ class Life_Wheel {
         error_log( 'CSS URL: ' . $css_url );
         
         // Check if files exist on filesystem
-        $js_path = plugin_dir_path( __FILE__ ) . 'assets/Life-wheel.js';
-        $css_path = plugin_dir_path( __FILE__ ) . 'assets/Life-wheel.css';
+        $js_path = plugin_dir_path( __FILE__ ) . 'assets/life-wheel.js';
+        $css_path = plugin_dir_path( __FILE__ ) . 'assets/life-wheel.css';
         error_log( 'Plugin Dir Path: ' . plugin_dir_path( __FILE__ ) );
         error_log( 'JS file exists: ' . ( file_exists( $js_path ) ? 'YES' : 'NO' ) . ' (' . $js_path . ')' );
         error_log( 'CSS file exists: ' . ( file_exists( $css_path ) ? 'YES' : 'NO' ) . ' (' . $css_path . ')' );
@@ -125,7 +125,7 @@ class Life_Wheel {
     }
 
     public function shortcode( $atts, $content = null ) {
-        $handle = 'Life-wheel';
+        $handle = 'life-wheel';
         wp_enqueue_script( $handle );
         wp_enqueue_style( $handle );
 
@@ -146,8 +146,8 @@ class Life_Wheel {
         }
 
         $config = array(
-            'restUrlSubmit' => esc_url_raw( rest_url( 'Life-wheel/v1/submit' ) ),
-            'restUrlStatus' => esc_url_raw( rest_url( 'Life-wheel/v1/status' ) ),
+            'restUrlSubmit' => esc_url_raw( rest_url( 'life-wheel/v1/submit' ) ),
+            'restUrlStatus' => esc_url_raw( rest_url( 'life-wheel/v1/status' ) ),
             'nonce'         => wp_create_nonce( 'wp_rest' ),
             'user'          => is_user_logged_in() ? wp_get_current_user()->user_login : '',
             'email'         => is_user_logged_in() ? wp_get_current_user()->user_email : '',
@@ -158,12 +158,12 @@ class Life_Wheel {
 
         wp_add_inline_script(
             $handle,
-            'window.Life_WHEEL_CFG = ' . wp_json_encode( $config ) . ';',
+            'window.life_WHEEL_CFG = ' . wp_json_encode( $config ) . ';',
             'before'
         );
 
-        $out  = '<div id="Life-wheel-root"></div>';
-        $out .= '<div id="Life-wheel-chat-source" style="display:none;">'
+        $out  = '<div id="life-wheel-root"></div>';
+        $out .= '<div id="life-wheel-chat-source" style="display:none;">'
              .  $chat_html
              .  '</div>';
 
@@ -171,15 +171,15 @@ class Life_Wheel {
     }
 
     public function register_routes() {
-        error_log( 'Life Wheel: Registering REST routes' );
+        error_log( 'life Wheel: Registering REST routes' );
         
-        register_rest_route( 'Life-wheel/v1', '/submit', array(
+        register_rest_route( 'life-wheel/v1', '/submit', array(
             'methods'             => 'POST',
             'callback'            => array( $this, 'handle_submit' ),
             'permission_callback' => array( $this, 'check_permission' ),
         ) );
 
-        register_rest_route( 'Life-wheel/v1', '/status', array(
+        register_rest_route( 'life-wheel/v1', '/status', array(
             'methods'             => 'GET',
             'callback'            => array( $this, 'handle_status' ),
             'permission_callback' => array( $this, 'check_permission' ),
@@ -197,7 +197,7 @@ class Life_Wheel {
         global $wpdb;
         $user_id = $this->get_current_user_id();
 
-        error_log( 'Life Wheel Status: user_id=' . $user_id );
+        error_log( 'life Wheel Status: user_id=' . $user_id );
 
         if ( ! $user_id ) {
             return new WP_REST_Response( array(
@@ -213,7 +213,7 @@ class Life_Wheel {
             $user_id
         ), ARRAY_A );
 
-        error_log( 'Life Wheel Status: DB result=' . print_r( $saved, true ) );
+        error_log( 'life Wheel Status: DB result=' . print_r( $saved, true ) );
 
         if ( ! $saved ) {
             return new WP_REST_Response( array(
@@ -257,7 +257,7 @@ class Life_Wheel {
             global $wpdb;
             $user_id = $this->get_current_user_id();
 
-            error_log( 'Life Wheel Submit: user_id=' . $user_id );
+            error_log( 'life Wheel Submit: user_id=' . $user_id );
 
             if ( ! $user_id ) {
                 return new WP_REST_Response( array(
@@ -316,7 +316,7 @@ class Life_Wheel {
                         $category_summaries[$category_name] = $category_summary;
 
                     } catch ( Exception $e ) {
-                        error_log( 'Life Wheel category summary failed: ' . $e->getMessage() );
+                        error_log( 'life Wheel category summary failed: ' . $e->getMessage() );
                         $category_summary = '';
                     }
                 }
@@ -339,10 +339,10 @@ class Life_Wheel {
                 
                 $result = $wpdb->replace( $table, $data, $format );
 
-                error_log( 'Life Wheel: save_rating result=' . $result . ', error=' . $wpdb->last_error );
+                error_log( 'life Wheel: save_rating result=' . $result . ', error=' . $wpdb->last_error );
 
                 if ( $result === false ) {
-                    error_log( 'Life Wheel DB Error (save_rating): ' . $wpdb->last_error );
+                    error_log( 'life Wheel DB Error (save_rating): ' . $wpdb->last_error );
                     return new WP_REST_Response( array(
                         'ok' => false,
                         'error' => 'Database error: ' . $wpdb->last_error
@@ -393,7 +393,7 @@ class Life_Wheel {
                         $overall_summary = $mwai->simpleTextQuery( $prompt );
 
                     } catch ( Exception $e ) {
-                        error_log( 'Life Wheel overall summary failed: ' . $e->getMessage() );
+                        error_log( 'life Wheel overall summary failed: ' . $e->getMessage() );
                         $overall_summary = '';
                     }
                 }
@@ -434,7 +434,7 @@ class Life_Wheel {
             ), 400 );
 
         } catch ( Exception $e ) {
-            error_log( 'Life Wheel Submit Error: ' . $e->getMessage() );
+            error_log( 'life Wheel Submit Error: ' . $e->getMessage() );
             return new WP_REST_Response( array(
                 'ok' => false,
                 'error' => 'Server error: ' . $e->getMessage()
@@ -446,7 +446,7 @@ class Life_Wheel {
         $name_str = $display_name ? $display_name : 'the student';
         
         $prompt = <<<PROMPT
-You are a friendly, supportive Life coach for young people aged 12-14.
+You are a friendly, supportive life coach for young people aged 12-14.
 
 The student has just rated their "$category" at $rating out of 10.
 
@@ -466,9 +466,9 @@ PROMPT;
         $name_str = $display_name ? $display_name : 'the student';
         
         $prompt = <<<'PROMPT'
-You are a friendly, supportive Life coach for young people aged 12-14.
+You are a friendly, supportive life coach for young people aged 12-14.
 
-Your job is to help them understand their Life Wheel results and identify patterns that can help them grow.
+Your job is to help them understand their life Wheel results and identify patterns that can help them grow.
 
 CORE TEACHING ROLE:
 Act as a warm, supportive guide who:
@@ -504,18 +504,18 @@ TONE REQUIREMENTS:
 
 PROMPT;
 
-        $prompt .= "\n\nHere are the student's Life Wheel ratings:\n\n";
+        $prompt .= "\n\nHere are the student's life Wheel ratings:\n\n";
         
         foreach ( $ratings as $category => $rating ) {
             $prompt .= "• $category: $rating/10\n";
         }
 
         $prompt .= "\n\nPlease provide an encouraging and insightful overall summary that includes:\n\n";
-        $prompt .= "1. Their strongest areas (highest ratings) and what this suggests about their current Life balance\n";
+        $prompt .= "1. Their strongest areas (highest ratings) and what this suggests about their current life balance\n";
         $prompt .= "2. Areas that might benefit from attention (lower ratings) - frame these as opportunities, not problems\n";
         $prompt .= "3. Any patterns you notice (e.g., high in relationships but lower in self-care, or vice versa)\n";
         $prompt .= "4. One specific, practical suggestion they could try this week to improve their lowest-rated area\n";
-        $prompt .= "5. A motivational message reminding them that Life balance is a journey, and every small step counts\n\n";
+        $prompt .= "5. A motivational message reminding them that life balance is a journey, and every small step counts\n\n";
         $prompt .= "Keep the tone warm, personal, and empowering. Use UK spelling. Make it feel like a caring mentor is speaking directly to them.";
 
         return $prompt;
@@ -530,4 +530,4 @@ PROMPT;
     }
 }
 
-new Life_Wheel();
+new life_Wheel();
