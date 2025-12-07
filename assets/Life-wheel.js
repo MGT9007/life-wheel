@@ -219,7 +219,7 @@
 
     card.appendChild(intro);
 
-    // Show the wheel image
+    // Show the wheel image correctly
     const wheelContainer = el("div", "lw-wheel-preview");
     const wheelCanvas = document.createElement("canvas");
     wheelCanvas.id = "lw-wheel-preview-canvas";

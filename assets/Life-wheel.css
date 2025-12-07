@@ -368,7 +368,7 @@
   }
 }
 
-/* Animation for spinning */
+/* Animation for spinning wheel*/
 @keyframes wheel-spin {
   from {
     transform: rotate(0deg);

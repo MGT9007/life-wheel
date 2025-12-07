@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Life Wheel
  * Description: Interactive life wheel assessment where students rate 8 life categories with AI-powered analysis and insights. Use shortcode [life_wheel].
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: MisterT9007
  */
 
